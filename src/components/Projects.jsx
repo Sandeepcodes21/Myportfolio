@@ -50,7 +50,7 @@ const Projects = () => {
         image: hotel,
         tags: ["React", "TalwindCss", "CSS"],
         category: "frontend",
-        link: "#",
+        link: "https://bookinghotelss.netlify.app/",
         features: [
           "Easy Search & Filters",
           "Instant Booking",
