@@ -96,13 +96,10 @@ const Footer = () => {
       setEmailError("");
 
       try {
-        // Simulate API call
         await new Promise((resolve) => setTimeout(resolve, 1000));
-
         setSubscribeSuccess(true);
         setEmail("");
 
-        // Auto-hide success after 5 seconds
         setTimeout(() => {
           setSubscribeSuccess(false);
         }, 5000);
@@ -156,7 +153,7 @@ const Footer = () => {
 
   return (
     <footer
-      className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-white pt-16 pb-8 transition-colors duration-500 relative overflow-hidden"
+      className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-white pt-16 pb-8 transition-colors duration-500 relative"
       role="contentinfo"
       aria-label="Footer"
     >
@@ -410,9 +407,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar - Fixed for Desktop */}
         <div
-          className="border-t border-gray-700/50 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center animate-on-scroll"
+          className="border-t border-gray-700/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center animate-on-scroll"
           id="footer-copyright"
           style={{
             transform: visibleSections["footer-copyright"]
@@ -426,21 +423,21 @@ const Footer = () => {
           <p className="text-gray-400 text-sm">
             © {currentYear} Sandeep Yadav. All rights reserved.
           </p>
-          <div className="flex items-center gap-6 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
             <a
               href="#"
               className="text-gray-400 hover:text-white transition-colors duration-300 hover:underline"
             >
               Privacy Policy
             </a>
-            <span className="w-px h-4 bg-gray-700"></span>
+            <span className="w-px h-4 bg-gray-700 hidden sm:block"></span>
             <a
               href="#"
               className="text-gray-400 hover:text-white transition-colors duration-300 hover:underline"
             >
               Terms of Service
             </a>
-            <span className="w-px h-4 bg-gray-700"></span>
+            <span className="w-px h-4 bg-gray-700 hidden sm:block"></span>
             <button
               onClick={scrollToTop}
               className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-110"
@@ -462,8 +459,8 @@ const Footer = () => {
             </button>
           </div>
           <p className="text-gray-500 text-xs">
-            Built with <span className="text-red-400">❤️</span> using React &
-            Tailwind CSS
+            Built with <span className="text-red-400">❤️</span> using React
+            &amp; Tailwind CSS
           </p>
         </div>
       </div>
