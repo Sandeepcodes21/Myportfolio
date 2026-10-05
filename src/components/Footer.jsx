@@ -407,19 +407,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar - Fixed for Desktop */}
-        <div
-          className="border-t border-gray-700/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center animate-on-scroll"
-          id="footer-copyright"
-          style={{
-            transform: visibleSections["footer-copyright"]
-              ? "translateY(0) scale(1)"
-              : "translateY(30px) scale(0.95)",
-            opacity: visibleSections["footer-copyright"] ? 1 : 0,
-            transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-            transitionDelay: "400ms",
-          }}
-        >
+        {/* Bottom Bar - Always Visible (Fixed for Desktop) */}
+        <div className="border-t border-gray-700/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
           <p className="text-gray-400 text-sm">
             © {currentYear} Sandeep Yadav. All rights reserved.
           </p>

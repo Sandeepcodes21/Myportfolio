@@ -158,7 +158,6 @@ const Contact = () => {
     e.preventDefault();
 
     if (!validateForm()) {
-      // Scroll to first error
       const firstErrorField = Object.keys(errors)[0];
       const errorElement = document.querySelector(
         `[name="${firstErrorField}"]`,
@@ -174,28 +173,30 @@ const Contact = () => {
     setSubmitError("");
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      console.log("Form submitted:", formData);
-      setSubmitSuccess(true);
-
-      // Reset form after success
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send message");
+      }
+
+      setSubmitSuccess(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
       setCharCount(0);
 
-      // Auto-hide success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
+      setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (error) {
-      setSubmitError("Something went wrong. Please try again.");
-      console.error("Submission error:", error);
+      console.error("Submit error:", error);
+      setSubmitError(
+        error.message || "Something went wrong. Please try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
