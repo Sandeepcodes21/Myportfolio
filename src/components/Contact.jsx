@@ -143,12 +143,10 @@ const Contact = () => {
       [name]: value,
     }));
 
-    // Clear error for this field when user types
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
 
-    // Update character count for message
     if (name === "message") {
       setCharCount(value.length);
     }
@@ -173,7 +171,10 @@ const Contact = () => {
     setSubmitError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      // ✅ UPDATED LINE — now uses env variable
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
